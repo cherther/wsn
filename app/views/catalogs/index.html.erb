@@ -1,0 +1,8 @@
+<% content_for :title do %>
+ @title
+<% end %>
+<% content_for :menu_sub do %>
+<%= render :partial => 'shared/menu_sub' %>
+<% end %>
+
+<h3><%= @title if @title %></h3>

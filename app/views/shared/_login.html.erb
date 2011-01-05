@@ -1,0 +1,37 @@
+<div id="topnav" class="topnav">
+<%if signed_in? %>
+Hello, <strong><%= current_user.full_name %></strong>. 
+<%= link_to "My Profile", edit_user_path(current_user), :title => "Update your user profile"%> | 
+<%= link_to "Log Out", logout_path(), :title => "Log out and end your session" %>
+<%  else %>
+Already registered? <%= link_to "Log in", login_path(), { :class => "signin", :title => "Log in" }%>
+<% end %>
+</div>
+  <fieldset id="signin_menu">
+	<%= form_for(:session, :url => sessions_path) do |f| %>	   
+	  <p>
+	   	<%= f.label :user_name -%>
+		<%= f.text_field :user_name, 
+		:placeholder => "Your email address", 
+		:title => "Your username/e-mail address",
+		:tabIndex => "4"
+		-%>
+	</p>
+	  <p>
+	   	<%= f.label :password -%>
+		<%= f.password_field :password, 
+		:placeholder => "Your password", 
+		:title => "Your password",
+		:tabIndex => "5" 
+		-%>
+	  </p>
+	  <p class="remember">
+		<%= f.submit "Log in", :class => "button simple small gray", :tabIndex => "6" %>
+		<%= check_box_tag "remember_me", value=1, checked=true, :tabIndex => "7", :title => "Check this box to help us remember you!"-%>
+		&nbsp<%= label_tag 'remember_me' -%>
+		</p>
+	  <p class="forgot">
+	<%= link_to "Forgot your password?", reset_path(), :title => "Did you forget your password? We can help"%>
+	</p>
+   <% end %>
+  </fieldset>

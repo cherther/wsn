@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%= render :partial => "shared/includes" %>
+	<title><%= title %></title>
+</head>
+<body>
+	
+	<div class="fluid_grid_layout"> 
+		<div class="six_column section">
+			<div class="three column">
+				<p><%= notice if !notice.blank? %></p>
+				<%= render :partial => "shared/header" -%>
+			</div> 
+			<div class="three column" style="text-align: right; vertical-align:bottom;">
+				<%= render :partial => "shared/login" %>
+			</div> 
+		</div>
+		<div class="six_column section">
+			<div class="six column">
+				<%= render :partial => "shared/menu_main" %>
+			</div> 
+		</div>
+		 <div class="six_column section">
+			<div class="six column">
+				<%= yield :menu_sub %>
+			</div> 
+		</div>
+		<div class="six_column section">
+			<div class="six column">
+				<noscript>
+					<div class="error">
+					For full functionality of this site it is necessary to enable JavaScript.
+					Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+					instructions how to enable JavaScript in your web browser</a>.
+					</div>
+				</noscript>
+				<div id="main" class="panel outline fill-lite padded rounded-corners-bottom">
+				<%= yield %>				
+				</div>
+			</div> 
+		</div>
+		<div class="panel outline margined-top rounded-corners">	
+			<div class="six_column section">
+				<div class="two column padded">
+					<%= render :partial => "shared/footer" %>
+				</div> 
+				<div class="two column padded text-center">
+					<%= render :partial => "shared/links" %>
+				</div> 
+				<div class="two column padded text-right">
+					<%= render :partial => "shared/build_info" %>
+				</div> 
+			</div> 
+		</div>
+	</div>
+<div>
+<%= "Signed in as: " if signed_in? %><%= current_user.user_name if !current_user.nil? && Rails.env.development? %>
+<%= debug(params) if Rails.env.development? %>
+</div>
+</body>
+</html>

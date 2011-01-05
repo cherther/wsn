@@ -1,0 +1,10 @@
+<div id="<%= "user-#{user.id}"%>" class="user <%= dom_class_first(user, @users) if @users %> <%= cycle('odd', 'even') %>">
+  <div class="full-name"><%= user.full_name %></div>
+  <div class="user-name"><%= user.user_name %></div>
+  <div class="parent-user"><%= user.parent_user.full_name if user.parent_user %></div>
+  <div class="pricing-plan <%= dom_id(user.pricing_plan) %>"><%= user.pricing_plan.pricing_plan_name if user.pricing_plan %></div>
+  <div class="roles system <%= dom_id(user.role) %>"><%= user.role.role_name if user.role %></div>
+  <div class="registered-on" datetime="<%= user.created_at %>"><%= user.created_at.to_formatted_s(:short) %></div>
+  <%= link_to_icon 'edit', edit_user_path(user) %>
+  <%= link_to_icon 'delete', user_path(user), :confirm => "Do you want to delete '#{user.full_name}'?", :method => :delete %>
+</div>

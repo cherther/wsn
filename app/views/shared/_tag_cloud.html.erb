@@ -1,0 +1,59 @@
+<%
+	initCount = @initCount
+	rowTags = @rowTags || 3
+	tagCount = initCount > 0 ? initCount : tags.length
+	rowSize = rowTags > 0 ? rowTags : 5
+	
+	#if we're taking a top 5 etc, we'll sort the rest by alpha
+	tags = initCount > 0 ? 
+		(@tagCountSeed == 0 ? @tags.take(tagCount) : @tags.offset(@tagCountSeed))
+		: @tags
+	
+	hasMoreLinks = @tagCountSeed == 0 && initCount > 0 && @tags.length > initCount
+
+	tagDivClass = initCount > 0 && @tagCountSeed > 0 ? "tag more" : "tag"
+	
+	%>
+<div class="<%= tagDivClass %>">
+<%
+	i = 1
+	rowIsComplete = true
+%>	
+<%# use in_groups_of> %>
+	<%	tags.each do |tag| %>
+		<%	
+			tagDisplay = tag.tag_name
+			tagId = tag.id #@isEditing ? String.Format(Model.TagIdTemplate, Model.TagCountSeed) : String.Format(Model.TagIdTemplate, tag.TagId);
+			#tagName = @isEditing ? String.Format(Model.TagNameTemplate, Model.TagCountSeed) : String.Format(Model.TagNameTemplate, tag.TagId); 
+			# : String.Format("{0}-{1}", Model.TagNameTemplate, tag.TerritoryId)
+			isSelected = false #!@search_tags.nil? && @search_tags.contains(tag.id)
+
+			tagClass = "button simple small " #+ isSelected ? " gray" : ""		
+		 %>
+			 <% if rowIsComplete # start a new row at this tag %>
+				<div>
+			<% end %>
+
+			<% rowIsComplete = false%>
+			<%if @in_edit_mode %>
+				<label for="<%= tagId %>" class="<%= tagClass %>"><%= tagDisplay%></label>
+				<%= check_box_tag tag.tag_name, value=tag.id, checked=isSelected, :id => tagId, :class => "tagbox-checkbox" %>
+		 	<% else %>
+				<a id="<%= tagId%>" class="<%= tagClass %>" rel="<%= tag.id %>"><%= tagDisplay%></a>
+			<% end %>
+		 	<%if i % rowSize == 0 %>
+				<% rowIsComplete = true %>
+				</div>
+			<% end %>
+			<%	i = i + 1
+				@tagCountSeed = @tagCountSeed + 1
+			%>
+		
+	<% end %>
+	<%if !rowIsComplete %>
+		</div>
+	<% end %>	
+	</div>
+	<%if hasMoreLinks %>
+		<%= render :partial => "shared/tag_cloud" %>
+	<% end %>

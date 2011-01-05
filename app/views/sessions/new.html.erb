@@ -1,0 +1,35 @@
+<div class="oultine fill-light padded rounded-corners text-top">
+	<h2 style="display:inline;">Log in</h2> using your e-mail address and WorldSongNet.com password you've set up previously. 
+	<%= link_to "Register", register_path() %> if you don't have an account.
+	<div>&nbsp;</div>
+	<%= form_for(:session, :url => sessions_path) do |f| %>
+	<%#= form_for(:session,  :url => sessions_path, :class => "form-small") do |f| -%>
+			<div>&nbsp;</div>
+			<div>
+				<%= f.label :user_name -%>
+			</div>
+			<div>
+				<%= f.text_field :user_name, :class => "field-large", 
+				:placeholder => "Your email address", 
+				:title => "Your username/e-mail address" -%>
+				<% #: Html.ValidationMessageFor(m => m.Email)%>
+			</div>
+			<div>&nbsp;</div>
+			<div>
+				<%= f.label :password %>
+			</div>
+			<div>
+				<%#: Html.PasswordFor(m => m.Password, new { @class = "cw-field-large", placeholder="Your password", required=true })%>
+				<%= f.password_field :password, :class => "field-large", :placeholder => "Your password" %>
+			</div>
+			<div>&nbsp;</div>
+			<div>
+					<%= check_box_tag "remember_me", value=1, checked=true, :title => "Check this box to help us remember you!"-%>
+					&nbsp<%= label_tag 'remember_me' -%>
+			</div>
+			<div>&nbsp;</div>
+			<%= f.submit "Log in", :class => "button simple gray b-ok" %>
+			<div>&nbsp;</div>
+			<%= link_to "Forgot your password?", reset_path(), :title => "Did you forget your password? We can help you!" -%>
+	<% end -%>
+</div>

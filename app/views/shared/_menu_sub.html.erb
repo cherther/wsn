@@ -1,0 +1,14 @@
+<ul id="main-menu" class="menu menu-sub">
+	<li class="outline-shaded <%= @sub_location == "users" ? "current" : "" %>">
+	<%= link_to "User Management", users_path %>
+	</li>
+	<li class="outline-shaded <%= @sub_location == "catalogs" ? "current" : "" %>">
+	<%= link_to "Catalog Management", catalogs_path %>
+	</li>
+	<li class="outline-shaded <%= @sub_location == "catalogs_upload" ? "current" : "" %>">
+	<%= link_to "Catalog Upload", catalogs_upload_path %>
+	</li>
+	<li class="outline-shaded <%= @sub_location == "users_invite" ? "current" : "" %>">
+	<%= link_to "Invite", users_invite_path %>
+	</li>
+</ul>

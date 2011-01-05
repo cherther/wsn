@@ -1,0 +1,63 @@
+<%= form_tag(results_contents_path, :method => "get") do %>	   
+<div id="search-simple" class="fill-dark padded rounded-corners">
+	<div class="six_column section">
+		<div class="four column">
+			<span class="search-bar"><input value="" placeholder="Search" name="keyword" class="search-input keyword" type="text"></span>
+			<span class="search-glass"><i>&nbsp;</i></span>
+		</div>
+		<div class="one column text-right">
+			<button class="button simple gray">Search</button>
+		</div>		
+		<div class="one column text-right">
+				[ <a href="#" id="show-advanced-search-link">more options</a> ]
+		</div>
+</div>
+<div id="search-advanced" class="fill-dark padded rounded-corners">	
+	<div class="six_column section">
+		<div class="four column">
+			<%= check_box_tag :billboard_pop, value=true, checked=false, :id => 'billboard_pop', :class => 'form-value-button' %>
+			<label for="billboard_pop">Billboard Pop Chart</label>
+			<input class="form-value-button" id="billboard_country" name="billboard_country" type="checkbox" value="true">
+			<label for="billboard_country">Billboard Country Chart</label>		
+		</div>
+		<div class="one column text-right">
+		</div>		
+		<div class="one column text-right">
+				[ <a href="#" id="show-advanced-tags-link">categories</a> ]
+		</div>
+	</div>
+</div>
+<div id="search-advanced-tags" class="fill-dark padded rounded-corners">	
+	<div class="six_column section">
+		<div class="three column">
+			<label>
+			Styles
+			</label>
+			<% @tags = @styles
+			   @initCount = @tags.count
+			 @rowTags = 6
+			   @tagCountSeed = 0
+			%>
+			<%if (@tags.count > @initCount)%>
+			<a class="small tags-more-link" href="#" title="Show more Style choices">more...</a>
+			<%end %>
+			<%= render :partial => "shared/tag_cloud" %>
+		</div>
+		<div class="three column">
+			<label>
+			Moods
+			</label>
+			<% @tags = @moods
+			   @initCount = @tags.count
+			 @rowTags = 6
+			   @tagCountSeed = 0
+			%>
+			<%if (@tags.count > @initCount)%>
+			<a class="small tags-more-link" href="#" title="Show more Mood choices">more...</a>
+			<%end %>
+			<%= render :partial => "shared/tag_cloud" %>
+			</div>
+		</div>
+	</div>	
+</div>
+<% end %>

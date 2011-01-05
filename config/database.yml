@@ -1,0 +1,27 @@
+development: &defaults
+  adapter: mysql2
+  encoding: utf8
+  database: wsn_dev
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test: &test
+  <<: *defaults
+  database: wsn_test
+
+production:
+  <<: *defaults
+  database: wsn_prod
+
+# legacy_database:
+#    development:
+#        adapter: sqlserver
+#        mode: odbc
+#        dsn: songsearch2_prod 
+#        username: sa
+#        password: W@rehous3
+        #host: www.worldsongnet.com, 1533

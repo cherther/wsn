@@ -1,0 +1,15 @@
+<!-- [if lt IE 8]>
+  <link rel="stylesheet" href=""../css/fluid.gs.lt_ie8.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<![endif] -->
+<!-- [if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif] -->
+<link  href="//fonts.googleapis.com/css?family=Syncopate:regular" rel="stylesheet" type="text/css" >
+<%= stylesheet_link_tag 'fluid.gs', 'jquery-ui', 'plupload.queue', 'prettyLoader', 'tipTip', 'gritter/jquery.gritter', 
+'cw.model', 'cw.buttons', 'cw.feedback', 'cw.forms', 'cw.tables', 'cw.twitlogin' %>
+<%= javascript_include_tag 'ext/jquery-1.4.4' %>
+<%= javascript_include_tag 'cw.app.events', 'cw.app.main', 'cw.app.ajax', 'cw.app.sound', 'cw.app.upload' %>
+<%= javascript_include_tag 'ext/jquery-ui.min', 'ext/soundmanager2-nodebug-jsmin', 'ext/jquery.tipTip', 
+'gritter/jquery.gritter.min', 'ext/plupload.min' %>
+<%= csrf_meta_tag %>
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />

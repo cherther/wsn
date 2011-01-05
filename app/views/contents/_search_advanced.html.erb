@@ -1,0 +1,93 @@
+
+	<label>Release Year</label>
+	<div>
+		<input type="text" name="release_year_1" value="" size="5" alt="releaseyear" />&nbsp;to&nbsp;
+		<input type="text" name="release_year_2" value="" size="5" alt="releaseyear" />
+	</div>
+</li>
+<li>
+	<div>
+		<div>
+			<label>Tempo</label>
+			<div class=""><div>
+			<a id="f_6__V-196" class="button simple small" rev="f_6__V" rel="196"> Slow</a>
+			<a id="f_6__V-197" class="button simple small" rev="f_6__V" rel="197"> Medium</a>
+			<a id="f_6__V-198" class="button simple small" rev="f_6__V" rel="198"> Fast</a>
+		</div>
+	</div>
+</li>
+<li>
+	<div>
+		<label>
+		Mood
+		</label>
+		<% @tags = @moods
+		   @initCount = 5
+		   @tagCountSeed = 0
+		%>
+		<%if (@tags.count > @initCount)%>
+		<a class="small tags-more-link" href="#" title="Show more Mood choices">more...</a>
+		<%end %>
+		<%= render :partial => "shared/tag_cloud" %>
+		</div>
+	</div>
+
+</li>
+<li>
+	<label>Sounds Like</label>
+	<div>
+		<input type="text" name="sounds_like" value="" alt="soundslike" />
+	</div>
+</li>
+<li>
+	<div>
+		<label>
+		Gender
+		</label>
+		<div>
+			<div>
+			 <a id="f_9__V-194" class="tagbox-search button simple small " rev="f_9__V" rel="194"> Male</a>
+			 <a id="f_9__V-193" class="tagbox-search button simple small " rev="f_9__V" rel="193"> Female</a>
+			 <a id="f_9__V-195" class="tagbox-search button simple small " rev="f_9__V" rel="195"> Duet</a>
+			</div>
+		</div>
+	</div>
+</li>
+<li>
+	<label>Featured Instruments</label>
+	<div>
+		<input type="text" name="instruments" value="" class=" form-value" alt="instruments" />
+	</div>
+</li>
+<li>
+	<div>
+	<input class="form-value form-value-button" id="is_controlled_allin" name="is_controlled_allin" type="checkbox" value="true" />								
+		<label for="is_controlled_allin">
+		100% All-in Master &amp; Comp.
+		</label>
+	</div>
+</li>
+<li>
+	<label>Record Label</label>
+	<div>
+		<input type="text" name="record_label" value="" class="autocomplete form-value ui-autocomplete-input" alt="recordlabel" autocomplete="off" />
+	</div>
+</li>
+<li>
+	<label>Writers</label>
+	<div>
+		<input type="text" name="writers" value="" class="autocomplete form-value ui-autocomplete-input" alt="writers" />
+	</div>
+</li>
+<li>
+	<label>Catalog</label>
+	<div>
+		<input type="text" name="catalog" value="" class="autocomplete form-value ui-autocomplete-input" alt="catalog.catalogname" />
+	</div>
+</li>
+<li>
+	<label>Notes</label>
+	<div>
+		<input type="text" name="notes" value="" alt="notes" />
+	</div>
+</li>

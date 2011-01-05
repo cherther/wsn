@@ -1,0 +1,29 @@
+<ul id="main-menu" class="menu menu-main rounded-corners-top">
+	<li class="rounded-corners-top outline-shaded <%= @location == "home" ? "current" : "" %>">
+	<%= link_to "Home", root_path, :class => "rounded-corners-top" %>
+	</li>
+	<li class="rounded-corners-top outline-shaded <%= @location == "search" ? "current" : "" %>">
+	<%= link_to "Search", search_path, :class => "rounded-corners-top" %>
+	</li>
+<% if signed_in? %>
+	<li class="rounded-corners-top outline-shaded <%= @location == "lists" ? "current" : "" %>">
+	<%= link_to "My Lists", lists_path, :class => "rounded-corners-top" %>
+	</li>
+	<li class="rounded-corners-top outline-shaded <%= @location == "admin" ? "current" : "" %>">
+	<%= link_to "Admin", users_path, :class => "rounded-corners-top" %>
+	</li>
+	<li class="rounded-corners-top outline-shaded <%= @location == "account" ? "current" : "" %>">
+	<%= link_to "My Account", user_path(current_user), :class => "rounded-corners-top" %>
+	</li>
+<% else %>
+	<li class="rounded-corners-top outline-shaded <%= @location == "register" ? "current" : "" %>">
+	<%= link_to "Register", register_path, :class => "rounded-corners-top" %>
+	</li>
+<% end %>
+	<li class="rounded-corners-top outline-shaded <%= @location == "help" ? "current" : "" %>">
+	<%= link_to "Help", help_path, :class => "rounded-corners-top" %>
+	</li>
+	<li class="rounded-corners-top outline-shaded <%= @location == "contact" ? "current" : "" %>">
+	<%= link_to "Contact Us", contact_path, :class => "rounded-corners-top" %>
+	</li>
+</ul>
