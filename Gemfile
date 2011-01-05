@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
-gem 'mysql2'
+gem 'rails', '3.0.0'
 
 # Deploy with Capistrano
-gem 'capistrano'
+# gem 'capistrano'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
@@ -25,6 +24,7 @@ gem 'will_paginate', '~> 3.0.beta'
 # end
 
 group :development, :test do
+	gem 'mysql2'
 	gem 'annotate-models'#, '1.0.4'
 	gem 'autotest', '4.4.6'
 	gem 'autotest-rails-pure', '4.1.2'
