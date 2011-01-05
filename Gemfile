@@ -23,8 +23,12 @@ gem 'will_paginate', '~> 3.0.beta'
 #   gem 'webrat'
 # end
 
-group :development, :test do
+group :development do
 	gem 'mysql2'
+	gem 'webrat'	
+end
+
+group :test do
 	gem 'annotate-models'#, '1.0.4'
 	gem 'autotest', '4.4.6'
 	gem 'autotest-rails-pure', '4.1.2'
