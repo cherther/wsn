@@ -15,7 +15,7 @@ class InitialSchema < ActiveRecord::Migration
     create_table "contacts", :force => true do |t|
       t.integer  "user_id",                        :null => false
       t.integer  "contact_type_id",                :null => false
-      t.binary   "is_default",      :limit => 1,   :null => false
+      t.binary   "is_default",      :null => false
       t.string   "contact_name",    :limit => 100
       t.string   "company_name",    :limit => 100
       t.string   "address_1",       :limit => 100
@@ -37,7 +37,7 @@ class InitialSchema < ActiveRecord::Migration
   
     create_table "contents", :force => true do |t|
       t.integer  "catalog_id",                          :null => false
-      t.binary   "is_controlled_allin", :limit => 1,    :null => false
+      t.binary   "is_controlled_allin", :null => false
       t.string   "title",               :limit => 300,  :null => false
       t.string   "artist",              :limit => 300,  :null => false
       t.string   "writers",             :limit => 500
@@ -74,7 +74,7 @@ class InitialSchema < ActiveRecord::Migration
       t.datetime "expiration_date",                       :null => false
       t.integer  "invitation_status",        :limit => 2, :null => false
       t.integer  "user_id"
-      t.binary   "is_plan_invitation",       :limit => 1, :null => false
+      t.binary   "is_plan_invitation",       :null => false
       t.datetime "created_at"
       t.datetime "updated_at"
       t.integer  "created_by_user_id"
@@ -87,7 +87,7 @@ class InitialSchema < ActiveRecord::Migration
       t.integer  "number_items"
       t.decimal  "compressed_size",                  :precision => 28, :scale => 4
       t.string   "archive_name",      :limit => 256
-      t.binary   "is_last_processed", :limit => 1
+      t.binary   "is_last_processed"
       t.datetime "created_at"
       t.datetime "updated_at"
       t.integer  "created_by_user_id"
@@ -98,8 +98,8 @@ class InitialSchema < ActiveRecord::Migration
       t.integer  "content_id",                 :null => false
       t.integer  "media_version",              :null => false
       t.datetime "media_date",                 :null => false
-      t.binary   "is_remote",     :limit => 1, :null => false
-      t.string   "mediat_ype",    :limit => 5
+      t.binary   "is_remote",     :null => false
+      t.string   "mediat_type",    :limit => 5
       t.integer  "media_bitrate"
       t.integer  "media_size",    :limit => 8
       t.integer  "media_length",  :limit => 8
@@ -124,17 +124,17 @@ class InitialSchema < ActiveRecord::Migration
       t.integer  "id",                                                                   :null => false
       t.string   "pricing_plan_name",                                                    :null => false
       t.string   "promo_message"
-      t.binary   "is_promo",                 :limit => 1,                                :null => false
-      t.binary   "is_featured",              :limit => 1,                                :null => false
-      t.binary   "is_enabled",               :limit => 1,                                :null => false
-      t.binary   "show_on_site",             :limit => 1,                                :null => false
+      t.binary   "is_promo",                 :null => false
+      t.binary   "is_featured",              :null => false
+      t.binary   "is_enabled",               :null => false
+      t.binary   "show_on_site",             :null => false
       t.decimal  "plan_charge",                           :precision => 28, :scale => 4
       t.string   "plan_recurrance"
       t.integer  "number_of_songs"
       t.integer  "number_of_invited_users"
       t.integer  "number_of_catalog_admins"
-      t.binary   "custom_contactus",         :limit => 1,                                :null => false
-      t.binary   "custom_siteprofile",       :limit => 1,                                :null => false
+      t.binary   "custom_contactus",         :null => false
+      t.binary   "custom_siteprofile",       :null => false
       t.datetime "created_at"
       t.datetime "updated_at"
       t.integer  "created_by_user_id"
@@ -182,10 +182,10 @@ class InitialSchema < ActiveRecord::Migration
       t.string   "lookup_name",            :limit => 50
       t.string   "list_name",              :limit => 10
       t.integer  "access_level",           :limit => 2,   :null => false
-      t.binary   "is_listable",            :limit => 1,   :null => false
-      t.binary   "is_cacheable",           :limit => 1,   :null => false
-      t.binary   "is_indexable",           :limit => 1,   :null => false
-      t.binary   "include_in_search_menu", :limit => 1,   :null => false
+      t.binary   "is_listable",            :null => false
+      t.binary   "is_cacheable",           :null => false
+      t.binary   "is_indexable",           :null => false
+      t.binary   "include_in_search_menu", :null => false
       t.datetime "created_at"
       t.datetime "updated_at"
       t.integer  "created_by_user_id"
@@ -205,7 +205,7 @@ class InitialSchema < ActiveRecord::Migration
       t.string   "contact_fax",          :limit => 50
       t.string   "contact_email",        :limit => 250, :null => false
       t.string   "admin_email",          :limit => 250, :null => false
-      t.binary   "has_profile_logo",     :limit => 1,   :null => false
+      t.binary   "has_profile_logo",     :null => false
       t.datetime "created_at"
       t.datetime "updated_at"
       t.integer  "created_by_user_id"
@@ -259,13 +259,13 @@ class InitialSchema < ActiveRecord::Migration
       t.integer  "site_profile_id",                              :null => false
       t.integer  "pricing_plan_id",                              :null => false
       t.integer  "plan_balance_id",                              :null => false
-      t.binary   "invitation_id",                :limit => 36
+      t.string   "invitation_id"           
       t.datetime "registered_on",                                :null => false
       t.string   "signature",                    :limit => 1000
-      t.binary   "show_debug_info",              :limit => 1
-      t.binary   "append_signature_to_title",    :limit => 1,    :null => false
-      t.binary   "has_agreed_to_privacy_policy", :limit => 1,    :null => false
-      t.binary   "has_allowed_communication",    :limit => 1,    :null => false
+      t.binary   "show_debug_info"              
+      t.binary   "append_signature_to_title",    :null => false
+      t.binary   "has_agreed_to_privacy_policy",    :null => false
+      t.binary   "has_allowed_communication",    :null => false
       t.datetime "created_at"
       t.datetime "updated_at"
       t.integer  "created_by_user_id"
