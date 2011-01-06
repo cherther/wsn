@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
 
     def self.list
       find(:all, :joins => [ :role, :pricing_plan ], :include => :parent_user, 
-      :order => 'parent_user_id, role_id, pricing_plan_id desc, user_name')      
+      :order => 'case parent_user_id when null then 0 else parent_user_id end, role_id, pricing_plan_id desc, user_name')      
     end
 
     private
