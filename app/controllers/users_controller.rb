@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @title = "User Management"
     @location = "admin"
     @sub_location = "users"
-    @users = User.order('parent_user_id, role_id, pricing_plan_id desc, user_name').all
+    @users = User.list
   end
 
   def invite

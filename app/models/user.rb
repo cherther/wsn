@@ -109,6 +109,11 @@ class User < ActiveRecord::Base
                :include => [{ :lists => :contents } ])
     end
 
+    def self.list
+      find(:all, :joins => [ :role, :pricing_plan ], :include => :parent_user, 
+      :order => 'parent_user_id, role_id, pricing_plan_id desc, user_name')      
+    end
+
     private
     
       def cleanup
