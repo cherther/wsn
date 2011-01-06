@@ -77,7 +77,7 @@ class Content < ActiveRecord::Base
        
     unless params[:keyword].blank?
       kw = params[:keyword].upcase
-      query << "(ucase(title) LIKE ? OR ucase(artist) LIKE ? OR ucase(lyrics_index) LIKE ? or ucase(keywords) LIKE ?)" 
+      query << "(upper(title) LIKE ? OR upper(artist) LIKE ? OR upper(lyrics_index) LIKE ? or upper(keywords) LIKE ?)" 
       values << "%" + kw + "%"
       values << "%" + kw + "%"
       values << "%" + kw + "%"
@@ -85,7 +85,7 @@ class Content < ActiveRecord::Base
     end
     
     unless params[:artist].blank?
-      query << "ucase(artist) LIKE ?" 
+      query << "upper(artist) LIKE ?" 
       values << "%" + params[:artist].upcase + "%"
     end
     
@@ -110,38 +110,38 @@ class Content < ActiveRecord::Base
     end
 
     unless params[:sounds_like].blank?
-      query << "sounds_like LIKE ?" 
-      values << "%" + params[:sounds_like] + "%"
+      query << "upper(sounds_like) LIKE ?" 
+      values << "%" + params[:sounds_like].upcase + "%"
     end
     
     unless params[:instruments].blank?
-      query << "instruments LIKE ?" 
-      values << "%" + params[:instruments] + "%"
+      query << "upper(instruments) LIKE ?" 
+      values << "%" + params[:instruments].upcase + "%"
     end
     
     unless params[:record_label].blank?
-      query << "record_label LIKE ?" 
-      values << "%" + params[:record_label] + "%"
+      query << "upper(record_label) LIKE ?" 
+      values << "%" + params[:record_label].upcase + "%"
     end
     
     unless params[:writers].blank?
-      query << "writers LIKE ?" 
-      values << "%" + params[:writers] + "%"
+      query << "upper(writers) LIKE ?" 
+      values << "%" + params[:writers].upcase + "%"
     end
     
     unless params[:record_label].blank?
-      query << "record_label LIKE ?" 
-      values << "%" + params[:record_label] + "%"
+      query << "upper(record_label) LIKE ?" 
+      values << "%" + params[:record_label].upcase + "%"
     end
     
     unless params[:notes].blank?
-      query << "notes LIKE ?" 
-      values << "%" + params[:notes] + "%"
+      query << "upper(notes) LIKE ?" 
+      values << "%" + params[:notes].upcase + "%"
     end
     
     unless params[:catalog].blank?
-      query << "catalog_name LIKE ?" 
-      values << "%" + params[:catalog] + "%"
+      query << "upper(catalog_name) LIKE ?" 
+      values << "%" + params[:catalog].upcase + "%"
     end
     
     unless params[:is_controlled_allin].blank?
