@@ -76,16 +76,17 @@ class Content < ActiveRecord::Base
     sort_by = params[:sd]
        
     unless params[:keyword].blank?
-      query << "(title LIKE ? OR artist LIKE ? OR lyrics_index LIKE ? or keywords LIKE ?)" 
-      values << "%" + params[:keyword] + "%"
-      values << "%" + params[:keyword] + "%"
-      values << "%" + params[:keyword] + "%"
-      values << "%" + params[:keyword] + "%"
+      kw = params[:keyword].upcase
+      query << "(ucase(title) LIKE ? OR ucase(artist) LIKE ? OR ucase(lyrics_index) LIKE ? or ucase(keywords) LIKE ?)" 
+      values << "%" + kw + "%"
+      values << "%" + kw + "%"
+      values << "%" + kw + "%"
+      values << "%" + kw + "%"
     end
     
     unless params[:artist].blank?
-      query << "artist LIKE ?" 
-      values << "%" + params[:artist] + "%"
+      query << "ucase(artist) LIKE ?" 
+      values << "%" + params[:artist].upcase + "%"
     end
     
     unless params[:billboard_pop].blank?
