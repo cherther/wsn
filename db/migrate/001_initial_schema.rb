@@ -121,7 +121,7 @@ class InitialSchema < ActiveRecord::Migration
     end
   
     create_table "pricing_plans", :force => true do |t|
-      t.integer  "id",                                                                   :null => false
+      t.integer  "id", :auto_increment => false,  :null => false
       t.string   "pricing_plan_name",                                                    :null => false
       t.string   "promo_message"
       t.binary   "is_promo",                 :null => false
@@ -169,29 +169,7 @@ class InitialSchema < ActiveRecord::Migration
       t.integer  "created_by_user_id"
       t.integer  "updated_by_user_id"
     end
-  
-    create_table "search_properties", :force => true do |t|
-      t.string   "property_name",          :limit => 50,  :null => false
-      t.string   "display_name",           :limit => 100, :null => false
-      t.string   "short_name",             :limit => 50,  :null => false
-      t.string   "search_group",           :limit => 50
-      t.integer  "search_menu_order",                     :null => false
-      t.integer  "search_type_id",         :limit => 2
-      t.string   "search_predicate",       :limit => 50
-      t.string   "property_type",          :limit => 50,  :null => false
-      t.string   "lookup_name",            :limit => 50
-      t.string   "list_name",              :limit => 10
-      t.integer  "access_level",           :limit => 2,   :null => false
-      t.binary   "is_listable",            :null => false
-      t.binary   "is_cacheable",           :null => false
-      t.binary   "is_indexable",           :null => false
-      t.binary   "include_in_search_menu", :null => false
-      t.datetime "created_at"
-      t.datetime "updated_at"
-      t.integer  "created_by_user_id"
-      t.integer  "updated_by_user_id"
-    end
-  
+    
     create_table "site_profiles", :force => true do |t|
       t.string   "profile_name",         :limit => 50,  :null => false
       t.string   "company_name",         :limit => 100, :null => false
@@ -289,7 +267,6 @@ class InitialSchema < ActiveRecord::Migration
     drop_table :representations
     drop_table :representations_territories
     drop_table :roles
-    drop_table :search_properties
     drop_table :site_profiles
     drop_table :subscriptions
     drop_table :tags

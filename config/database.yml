@@ -15,7 +15,7 @@ test: &test
 
 production:
   <<: *defaults
-  database: wsn_prod
+  database: wsn_dev
 
 # legacy_database:
 #    development:
