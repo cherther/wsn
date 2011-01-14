@@ -4,7 +4,11 @@ require 'spec_helper'
 describe CatalogsController do
 
   render_views
-
+  
+  before(:each) do
+    test_sign_in
+  end
+  
   describe "GET 'index'" do
     
     it "should be successful" do

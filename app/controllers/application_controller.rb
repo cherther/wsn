@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
   
-  def login_require
-      if session[:user]
+  def require_login
+      if signed_in?
         return true
       end
       flash[:warning]='Please login to continue'
@@ -12,9 +12,11 @@ class ApplicationController < ActionController::Base
       return false 
     end
 
-  def current_user
-    session[:user]
-  end
+#  def current_user
+#    logger.info '!!!!in ApplicationController current user'
+#    session[:user]
+#    
+#  end
 
   def redirect_to_stored
     if return_to = session[:return_to]

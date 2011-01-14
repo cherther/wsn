@@ -1,4 +1,7 @@
 class ContentsController < ApplicationController
+  
+  before_filter :require_login
+  
   def show
   end
 

@@ -1,4 +1,7 @@
 class CatalogsController < ApplicationController
+  
+  before_filter :require_login
+  
   def index
     @title = "Catalog Management"
     

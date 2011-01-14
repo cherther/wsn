@@ -32,6 +32,7 @@ describe "LayoutLinks" do
   end
 
   it "should have a search page at '/search'" do
+    integration_sign_in
     get '/search'
     response.should have_selector('title', :content => "Search")
   end
@@ -53,11 +54,7 @@ describe "LayoutLinks" do
   describe "when signed in" do
     
     before(:each) do
-      @user = Factory(:user)
-      visit login_path
-      fill_in 'session[user_name]',    :with => @user.user_name
-      fill_in 'session[password]', :with => @user.password
-      click_button
+      integration_sign_in
     end
 
     it "should have a signout link" do

@@ -89,4 +89,21 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  
+  def test_sign_in    
+      user = Factory(:user)
+      user.user_name = 'claus@codewerks.de'
+      user.password = 'password'
+      controller.sign_in(user)
+  end
+
+  def integration_sign_in
+    visit login_path
+    user = Factory(:user)
+    user.user_name = 'claus@codewerks.de'
+    user.password = 'password'
+    fill_in 'session[user_name]',    :with => user.user_name
+    fill_in 'session[password]', :with => user.password
+    click_button
+  end
 end

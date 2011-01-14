@@ -5,6 +5,11 @@ describe UsersController do
   render_views
 
   describe "GET 'index'" do
+    
+    before(:each) do
+      test_sign_in
+    end
+
     it "should be successful" do
       get 'index'
       response.should be_success
@@ -89,6 +94,11 @@ describe UsersController do
   end
 
   describe "GET 'destroy'" do
+
+    before(:each) do
+      test_sign_in
+    end
+
     it "should be successful" do
       get 'destroy'
       response.should be_success

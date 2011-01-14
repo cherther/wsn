@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_filter :require_login, :only => [:index, :invite, :destroy ]
+  
   def index
     @title = "User Management"
     @location = "admin"

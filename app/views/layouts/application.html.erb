@@ -55,7 +55,9 @@
 		</div>
 	</div>
 <div>
-<%= "Signed in as: " if signed_in? %><%= current_user.user_name if !current_user.nil? && Rails.env.development? %>
+
+<%#= "Signed in as: " if signed_in? %>
+<%#= current_user.user_name if !current_user.nil? && Rails.env.development? %>
 <%= debug(params) if Rails.env.development? %>
 </div>
 </body>
