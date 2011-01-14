@@ -2,9 +2,9 @@
 <%if signed_in? %>
 Hello, <strong><%= current_user.full_name %></strong>. 
 <%= link_to "My Profile", edit_user_path(current_user), :title => "Update your user profile"%> | 
-<%= link_to "Log Out", logout_path(), :title => "Log out and end your session" %>
+<%= link_to "Logout", logout_path, :title => "Logout and end your session", :method => :delete %>
 <%  else %>
-Already registered? <%= link_to "Log in", login_path(), { :class => "signin", :title => "Log in" }%>
+Already registered? <%= link_to "Login", login_path, { :class => "signin", :title => "Login" }%>
 <% end %>
 </div>
   <fieldset id="signin_menu">
@@ -26,7 +26,7 @@ Already registered? <%= link_to "Log in", login_path(), { :class => "signin", :t
 		-%>
 	  </p>
 	  <p class="remember">
-		<%= f.submit "Log in", :class => "button simple small gray", :tabIndex => "6" %>
+		<%= f.submit "Login", :class => "button simple small gray", :tabIndex => "6" %>
 		<%= check_box_tag "remember_me", value=1, checked=true, :tabIndex => "7", :title => "Check this box to help us remember you!"-%>
 		&nbsp<%= label_tag 'remember_me' -%>
 		</p>

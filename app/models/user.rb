@@ -92,7 +92,15 @@ class User < ActiveRecord::Base
     def password_changed?
       !@password.blank?
     end
+    
+    def admin?
+      role_id <= Role::ADMIN  
+    end
         
+    def super_admin?
+      role_id <= Role::SUPER_ADMIN
+    end
+
     def self.authenticate(user_name, submitted_password)
         user = find_by_user_name(user_name)
         return nil  if user.nil?

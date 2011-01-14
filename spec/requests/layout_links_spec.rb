@@ -25,10 +25,10 @@ describe "LayoutLinks" do
     get '/privacy'
     response.should have_selector('title', :content => "Privacy Policy")
   end
-    
+      
   it "should have a login page at '/login'" do
     get '/login'
-    response.should have_selector('title', :content => "Log In")
+    response.should have_selector('title', :content => "Login")
   end
 
   it "should have a search page at '/search'" do
@@ -36,4 +36,47 @@ describe "LayoutLinks" do
     response.should have_selector('title', :content => "Search")
   end
 
+  describe "when not signed in" do
+    
+    it "should have a register link" do
+      visit root_path
+      response.should have_selector("a", :href => register_path,
+                                         :content => "Register")
+    end
+    
+    it "should have a signin link" do
+      visit root_path
+      response.should have_selector("a", :href => login_path,
+                                         :content => "Login")
+    end
+  end
+  describe "when signed in" do
+    
+    before(:each) do
+      @user = Factory(:user)
+      visit login_path
+      fill_in 'session[user_name]',    :with => @user.user_name
+      fill_in 'session[password]', :with => @user.password
+      click_button
+    end
+
+    it "should have a signout link" do
+      visit root_path
+      response.should have_selector("a", :href => logout_path,
+                                         :content => "Logout")
+    end
+
+    it "should have a profile link" do
+          visit root_path
+          response.should have_selector("a", #:href => edit_user_path(@user),
+                                             :content => "My Profile")
+    end
+    
+    it "should not have a register link" do
+      visit root_path
+      response.should_not have_selector("a", :href => register_path,
+                                            :content => "Register")
+    end
+  
+   end
 end

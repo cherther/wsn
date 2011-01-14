@@ -1,9 +1,12 @@
+<% content_for :title do %>
+ @title
+<% end %>
 <div class="oultine fill-light padded rounded-corners text-top">
-	<h2 style="display:inline;">Log in</h2> using your e-mail address and WorldSongNet.com password you've set up previously. 
+	<h2 style="display:inline;">Login</h2> using your e-mail address and WorldSongNet.com password you've set up previously. 
 	<%= link_to "Register", register_path() %> if you don't have an account.
 	<div>&nbsp;</div>
 	<%= form_for(:session, :url => sessions_path) do |f| %>
-	<%#= form_for(:session,  :url => sessions_path, :class => "form-small") do |f| -%>
+
 			<div>&nbsp;</div>
 			<div>
 				<%= f.label :user_name -%>
