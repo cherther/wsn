@@ -1,2 +1,61 @@
-<h3><%= @title if @title %></h3>
-Editing <%= @user.user_name %>
+<% content_for :title do %>
+ @title
+<% end %>
+<div class="oultine fill-light padded rounded-corners text-top">
+
+	<h3><%= @title if @title %></h3>
+
+	<%= form_for(@user) do |f| %>
+	  <%= render 'shared/error_messages', :object => f.object %>
+		<div>&nbsp;</div>
+			<div>
+				<%= f.label :user_name -%>
+			</div>
+			<div>
+				<%= f.text_field :user_name, :class => "field-large", :disabled => "disabled" -%>
+			</div>
+			<div>&nbsp;</div>
+			<div>
+				<%= f.label :first_name -%>
+			</div>
+			<div>
+				<%= f.text_field :first_name, :class => "field-large" -%>
+			</div>
+
+			<div>&nbsp;</div>
+			<div>
+				<%= f.label :last_name -%>
+			</div>
+			<div>
+				<%= f.text_field :last_name, :class => "field-large" -%>
+			</div>
+			<div>&nbsp;</div>
+			<div>
+				<%= f.label :signature -%>
+			</div>
+			<div>
+				<%= f.text_field :signature, :class => "field-large" -%>
+			</div>
+
+			<div>&nbsp;</div>
+			<div>
+				<%= f.label :password %>
+			</div>
+			<div>
+				<%#: Html.PasswordFor(m => m.Password, new { @class = "cw-field-large", placeholder="Your password", required=true })%>
+				<%= f.password_field :password, :class => "field-large", :placeholder => "Your password" %>
+			</div>
+
+			<div>&nbsp;</div>
+			<div>
+				<%= f.label :password_confirmation %>
+			</div>
+			<div>
+				<%#: Html.PasswordFor(m => m.Password, new { @class = "cw-field-large", placeholder="Your password", required=true })%>
+				<%= f.password_field :password_confirmation, :class => "field-large", :placeholder => "Confirm your password" %>
+			</div>
+			<div>&nbsp;</div>
+			<%= f.submit "Update", :class => "button simple gray b-ok" %>
+	<% end %>
+
+</div>

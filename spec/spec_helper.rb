@@ -90,20 +90,24 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   
-  def test_sign_in    
-      user = Factory(:user)
-      user.user_name = 'claus@codewerks.de'
-      user.password = 'password'
-      controller.sign_in(user)
-  end
-
-  def integration_sign_in
-    visit login_path
+  def existing_user
     user = Factory(:user)
     user.user_name = 'claus@codewerks.de'
     user.password = 'password'
-    fill_in 'session[user_name]',    :with => user.user_name
-    fill_in 'session[password]', :with => user.password
+    user
+  end
+  
+  def test_sign_in(user)    
+      u = user || existing_user
+      controller.sign_in(u)
+  end
+
+  
+  def integration_sign_in(user)
+    visit login_path
+    u = user || existing_user
+    fill_in 'session[user_name]',    :with => u.user_name
+    fill_in 'session[password]', :with => u.password
     click_button
   end
 end

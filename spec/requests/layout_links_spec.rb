@@ -32,7 +32,7 @@ describe "LayoutLinks" do
   end
 
   it "should have a search page at '/search'" do
-    integration_sign_in
+    integration_sign_in existing_user
     get '/search'
     response.should have_selector('title', :content => "Search")
   end
@@ -54,7 +54,7 @@ describe "LayoutLinks" do
   describe "when signed in" do
     
     before(:each) do
-      integration_sign_in
+      integration_sign_in existing_user
     end
 
     it "should have a signout link" do

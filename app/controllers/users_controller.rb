@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_filter :require_login, :only => [:index, :invite, :destroy ]
+  before_filter :require_login, :except => [:new, :create, :reset ]
   
   def index
     @title = "User Management"
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @location = "admin"
     @sub_location = "users"
     @title = "User Detail"
+    
   end
 
   def edit
@@ -37,6 +38,17 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile updated."
+#      redirect_to @user
+      render 'edit'
+    else
+      @location = "admin"
+      @sub_location = "users"
+      @title = "User Profile"
+      render 'edit'
+    end
   end
   
   def reset

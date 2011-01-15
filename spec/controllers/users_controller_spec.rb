@@ -7,7 +7,7 @@ describe UsersController do
   describe "GET 'index'" do
     
     before(:each) do
-      test_sign_in
+      test_sign_in existing_user
     end
 
     it "should be successful" do
@@ -43,16 +43,22 @@ describe UsersController do
   describe "GET 'show'" do
     before(:each) do
         @user = Factory(:user)
+        test_sign_in @user
     end
     it "should be successful" do
       get :show, :id => @user
       response.should be_success
+    end
+    it "should have the right title" do
+        get :show, :id => @user
+        response.should have_selector("title", :content => "User Detail")
     end
   end
 
   describe "GET 'edit'" do
     before(:each) do
         @user = Factory(:user)
+        test_sign_in @user
     end
     it "should be successful" do
       get :edit, :id => @user
@@ -68,16 +74,47 @@ describe UsersController do
     end
   end
 
-  describe "POST 'update'" do
+  describe "PUT 'update'" do
+    
     before(:each) do
-        @user = Factory(:user)
+      @user = Factory(:user)
+      test_sign_in(@user)
     end
     
-    it "should be successful" do
-      get :update#, @user
-      response.should be_success
+    describe "failure" do
+
+      before(:each) do
+        @attr = { :user_name => "", :first_name => "", :last_name => "", :password => "",
+                  :password_confirmation => "" }
+      end
+
+      it "should render the 'edit' page" do
+        put :update, :id => @user, :user => @attr
+        response.should render_template('edit')
+      end
+
+      it "should have the right title" do
+        put :update, :id => @user, :user => @attr
+        response.should have_selector("title", :content => "User Profile")
+      end
     end
     
+    describe "success" do
+
+      before(:each) do
+        @attr = { :first_name => "New", :last_name => "Name", :user_name => "user@example.org",
+                  :password => "barbaz", :password_confirmation => "barbaz" }
+      end
+
+      it "should change the user's attributes" do
+        put :update, :id => @user, :user => @attr
+        @user.reload
+        @user.user_name.should  == @attr[:user_name]
+        @user.first_name.should == @attr[:first_name]
+      end
+
+    end
+
   end
 
   describe "GET 'reset'" do
@@ -96,7 +133,7 @@ describe UsersController do
   describe "GET 'destroy'" do
 
     before(:each) do
-      test_sign_in
+      test_sign_in existing_user
     end
 
     it "should be successful" do

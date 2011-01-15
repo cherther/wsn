@@ -6,7 +6,7 @@ describe CatalogsController do
   render_views
   
   before(:each) do
-    test_sign_in
+    test_sign_in existing_user
   end
   
   describe "GET 'index'" do

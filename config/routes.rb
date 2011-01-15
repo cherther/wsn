@@ -75,7 +75,7 @@ Wsn::Application.routes.draw do
    match '/register', :to => 'users#new'
    match '/login', :to => 'sessions#new'
    match '/logout', :to => 'sessions#destroy'
-   match '/profile/:id', :to => 'users#edit'
+   #match '/profile/:id', :to => 'users#edit'
    match '/reset', :to => 'users#reset'
 
    match '/search', :to => 'contents#search'
