@@ -60,5 +60,5 @@ describe CatalogsController do
       response.should have_selector("title", :content => "Catalog Upload")
     end
   end
-
+    
 end
