@@ -1,0 +1,31 @@
+<% content_for :title do %>
+ @title
+<% end %>
+<div class="oultine fill-light padded rounded-corners text-top">
+	<h3><%= @title if @title %></h3>
+	<div>&nbsp;</div>
+	<%= form_for(:invitations, :url => invitations_create_path) do |f| %>
+
+			<div>&nbsp;</div>
+			<div>
+				<%= f.label :invitation -%> (separate multiple addresses with commas)
+			</div>
+			<div>
+				<%= f.text_field :address_0 %>
+			</div>
+			<div>
+				<%= f.text_field :address_1 %>
+			</div>
+			<div>
+				<%= f.text_field :address_2 %>
+			</div>
+			<div>
+				<%= f.text_field :address_3 %>
+			</div>
+			<div>
+				<%= f.text_field :address_4 %>
+			</div>
+			<div>&nbsp;</div>
+			<%= f.submit "Send", :class => "button simple gray b-email" %>
+	<% end -%>
+</div>

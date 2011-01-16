@@ -1,17 +1,13 @@
 class UsersController < ApplicationController
   
-  before_filter :require_login, :except => [:new, :create, :reset ]
+  before_filter :require_login, :only => [:edit, :update ]
+  before_filter :require_admin, :only => [:index, :destroy ]
   
   def index
     @title = "User Management"
     @location = "admin"
     @sub_location = "users"
     @users = User.list
-  end
-
-  def invite
-    @location = "admin"
-    @sub_location = "users_invite"
   end
 
   def new

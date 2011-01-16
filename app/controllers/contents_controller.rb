@@ -1,6 +1,7 @@
 class ContentsController < ApplicationController
   
   before_filter :require_login
+  before_filter :require_admin, :only => [ :edit, :destroy ]
   
   def show
   end

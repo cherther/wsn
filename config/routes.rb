@@ -1,5 +1,6 @@
 Wsn::Application.routes.draw do
   
+
   resources :catalogs do
     collection do
       get 'upload'
@@ -15,11 +16,9 @@ Wsn::Application.routes.draw do
 
   resources :sessions, :only => [:new, :create, :destroy]
   
-  resources :users do
-    collection do
-      get 'invite'
-    end
-  end
+  resources :users
+  
+  resources :invitations, :only => [:new, :create, :index]
   
   resources :lists do
     member do
@@ -42,7 +41,10 @@ Wsn::Application.routes.draw do
   get "users/edit"
   get "users/update"
   get "users/destroy"
-  get "users/invite"
+
+  get "invitations/index"
+  get "invitations/new"
+  post "invitations/create"
   
   get "catalogs/show"
   get "catalogs/edit"

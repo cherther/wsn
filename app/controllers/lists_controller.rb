@@ -1,7 +1,11 @@
 class ListsController < ApplicationController
+  
+  before_filter :require_login
+  
   def index
     @title = "My Lists"
     @location = "lists"
+    @lists = List.where(:user_id == current_user.id)
   end
 
   def new

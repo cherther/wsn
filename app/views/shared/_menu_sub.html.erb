@@ -8,7 +8,7 @@
 	<li class="outline-shaded <%= @sub_location == "catalogs_upload" ? "current" : "" %>">
 	<%= link_to "Catalog Upload", catalogs_upload_path %>
 	</li>
-	<li class="outline-shaded <%= @sub_location == "users_invite" ? "current" : "" %>">
-	<%= link_to "Invite", users_invite_path %>
+	<li class="outline-shaded <%= @sub_location == "invite_new" ? "current" : "" %>">
+	<%= link_to "Invite", new_invitation_path %>
 	</li>
 </ul>
