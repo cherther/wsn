@@ -101,6 +101,7 @@ class User < ActiveRecord::Base
       role_id <= Role::SUPER_ADMIN
     end
 
+    
     def self.authenticate(user_name, submitted_password)
         user = find_by_user_name(user_name)
         return nil  if user.nil?

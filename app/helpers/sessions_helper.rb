@@ -14,6 +14,10 @@ module SessionsHelper
       @current_user = user
   end
 
+  def current_user?(user)
+      user == current_user
+  end
+
   def signed_in?
       !current_user.nil?
   end
@@ -21,6 +25,13 @@ module SessionsHelper
   def sign_out
     cookies.delete(:remember_token)
     current_user = nil  
+  end
+  
+  def deny_access
+      flash[:warning]='Please login to continue'
+      session[:return_to]=request.fullpath
+      redirect_to login_path()
+      return false 
   end
 
   private

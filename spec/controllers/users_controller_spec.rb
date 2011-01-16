@@ -133,11 +133,12 @@ describe UsersController do
   describe "GET 'destroy'" do
 
     before(:each) do
-      test_sign_in existing_user
+      @user = Factory(:user)
+      test_sign_in(@user)
     end
 
     it "should be successful" do
-      get 'destroy'
+      get 'destroy', :id => @user
       response.should be_success
     end
   end
