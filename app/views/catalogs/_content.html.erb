@@ -1,0 +1,12 @@
+<div id="<%= "content-#{content.id}"%>" class="content <%= dom_class_first(content, @contents) %> <%= cycle('odd', 'even') %>">
+  <div class="title"><%= content.title_display %></div>
+  <div class="artist"><%= content.artist_display %></div>
+  <div class="billboard-charts pop"><%= "Pop: " unless content.pop.blank? %><%= content.pop %></div>
+  <div class="billboard-charts country"><%= "Country: " unless content.country.blank? %><%= content.country %></div>
+  <div class="record-label"><%= content.catalog.catalog_name %></div>
+  <div class="release-year"><%= content.created_at.strftime("%D") %></div>
+
+  <%= link_to_icon 'edit', edit_content_path(content) %>
+  <%= link_to_icon 'delete', content_path(content), :confirm => "Do you want to delete '#{content.title}' by #{content.artist}'?", :method => :delete %>
+  <%#= link_to ' ', content_path(content), :class => "detail" %>
+</div>

@@ -6,3 +6,36 @@
 <% end %>
 
 <h3><%= @title if @title %></h3>
+
+<!-- begin results -->
+<div class="outline fill-lite padded rounded-corners">
+	<div class="six_column section">
+		<div class="three column">
+			<%= render :partial => "shared/buttons_lists" %>
+		</div>
+		<div class="three column">		
+			<div class="text-right padded">
+			</div>
+		</div>
+	</div>
+	<% if !@contents.nil? %>
+		<div class="six_column section">
+			<div class="four column padded">
+				<%= pluralize(@contents.total_entries, 'result') %>.
+			</div>				
+			<div class="two column padded text-right">
+				<%= will_paginate(@contents) unless @contents.nil? %>
+			</div>
+		</div>
+		<div id="results">
+			<%= render :partial => 'catalogs/content', :object => @contents %>
+		</div>
+		<div class="text-right padded">
+		<%= will_paginate(@contents) %>
+		</div>
+	<% else %>
+		Couldn't find any content
+	<% end %>	
+					
+</div>
+<!-- end results -->

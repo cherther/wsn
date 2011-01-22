@@ -19,4 +19,6 @@ class Catalog < ActiveRecord::Base
   has_many :users, :through => :privileges
 
   attr_accessible :catalog_name, :created_by_user_id, :updated_by_user_id
+  
+
 end

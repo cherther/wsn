@@ -63,6 +63,21 @@ class Content < ActiveRecord::Base
     find(id, :joins => :catalog, :include => [:media_files, :tags, { :representations => :territories }])
   end
   
+  def self.list_recent(page)
+  
+    default_sort = "contents.created_at desc"
+    
+    conditions =  "contents.created_at >= '" + 7.days.ago.to_date.day.to_s + "'"
+
+    paginate :per_page => 30, 
+             :page => page,
+             :conditions => conditions, 
+             :order => default_sort,
+             :include => :catalog
+  
+               
+  end
+  
   def self.search(params, page)
     
     query = []

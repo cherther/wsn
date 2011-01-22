@@ -8,6 +8,13 @@ class CatalogsController < ApplicationController
     @location = "admin"
     @sub_location = "catalogs"
 
+    @page_size = 50
+    @page = params[:page].blank? ? 1 : Integer(params[:page])   
+    
+    @pages =  @contents.nil? ? 0 : Integer(@contents.count/@page_size)+1
+
+    @contents = Content.list_recent(@page)
+
   end
 
   def show
