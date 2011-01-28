@@ -5,6 +5,8 @@ describe ContentsController do
   render_views
 
   before(:each) do
+    @user = existing_user
+    @user.id = 2
     test_sign_in existing_user
   end
 

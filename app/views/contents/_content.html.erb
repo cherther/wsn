@@ -1,4 +1,4 @@
-<div id="<%= "content-#{content.id}"%>" class="content <%= dom_class_first(content, @contents) %> <%= cycle('odd', 'even') %>">
+<div id="<%= "content-#{content.id}"%>" class="content <%= dom_class_first(content, @contents) unless content.nil? || @contents.nil? %> <%= cycle('odd', 'even') %>">
   <div class="title"><%= content.title_display %>
 </div>
   <div class="artist"><%= content.artist_display %></div>

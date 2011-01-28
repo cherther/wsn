@@ -4,6 +4,8 @@ class ContentsController < ApplicationController
   before_filter :require_admin, :only => [ :edit, :destroy ]
   
   def show
+    content_id = params[:id].to_i unless params[:id].blank?
+    @contents = Content.detail(content_id, current_user)
   end
 
   def edit
@@ -32,7 +34,7 @@ class ContentsController < ApplicationController
     #sort = params[:so]
     #sort_by = params[:sd]
     
-    @contents = Content.search(params, @page)
+    @contents = Content.search(params, @page, current_user)
     @pages =  @contents.nil? ? 0 : Integer(@contents.count/@page_size)+1
 
     @styles = Tag.styles 

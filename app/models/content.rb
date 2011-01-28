@@ -59,26 +59,33 @@ class Content < ActiveRecord::Base
     end
   end
 
-  def self.detail(id)
-    find(id, :joins => :catalog, :include => [:media_files, :tags, { :representations => :territories }])
+  def self.detail(id, user)
+    find(:all, 
+      :conditions => "contents.id = " + id.to_s + " AND privileges.user_id = " + user.id.to_s,
+      :joins => [ {:catalog => :privileges}], 
+      :include => [ :media_files, :tags, { :representations => :territories }]
+      ).first
   end
   
-  def self.list_recent(page)
+  def self.list_recent(page, user)
   
+    recently = 30.days.ago.to_date.to_s
     default_sort = "contents.created_at desc"
     
-    conditions =  "contents.created_at >= '" + 7.days.ago.to_date.day.to_s + "'"
-
+    conditions = "contents.created_at >= '" + recently + "'"
+    conditions += " and privileges.role_id <= " + Role::ADMIN.to_s + " and privileges.user_id = " + user.id.to_s unless user.nil?
+    
     paginate :per_page => 30, 
              :page => page,
              :conditions => conditions, 
              :order => default_sort,
-             :include => :catalog
+             :include => :catalog,
+             :joins => [ { :catalog => :privileges} ]
   
                
   end
   
-  def self.search(params, page)
+  def self.search(params, page, user)
     
     query = []
     values = []
@@ -163,7 +170,10 @@ class Content < ActiveRecord::Base
       query << "is_controlled_allin = 1" 
       values << "1"  
     end
-    
+  
+    query << "privileges.user_id = ?" 
+    values << user.id
+
     if query.size >= 1 then
       conditions =  [query.join(" AND ")] + values
       
@@ -176,7 +186,8 @@ class Content < ActiveRecord::Base
                 
       paginate :per_page => 30, 
                  :page => page,
-                 :conditions => conditions, 
+                 :conditions => conditions,
+                 :joins => [ { :catalog => :privileges} ],                 
                  :order => default_sort
     end
     

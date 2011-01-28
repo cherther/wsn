@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110104205516) do
+ActiveRecord::Schema.define(:version => 20110122202206) do
 
   create_table "catalogs", :force => true do |t|
     t.string   "catalog_name",       :limit => 100, :null => false
@@ -72,10 +72,14 @@ ActiveRecord::Schema.define(:version => 20110104205516) do
     t.integer "content_id", :null => false
   end
 
+  add_index "contents_lists", ["list_id", "content_id"], :name => "index_contents_lists_on_list_id_and_content_id", :unique => true
+
   create_table "contents_tags", :id => false, :force => true do |t|
     t.integer "content_id", :null => false
     t.integer "tag_id",     :null => false
   end
+
+  add_index "contents_tags", ["content_id", "tag_id"], :name => "index_contents_tags_on_content_id_and_tag_id", :unique => true
 
   create_table "invitations", :force => true do |t|
     t.string   "invitation_email_address",                :null => false
@@ -154,6 +158,8 @@ ActiveRecord::Schema.define(:version => 20110104205516) do
     t.integer "catalog_id", :null => false
     t.integer "role_id",    :null => false
   end
+
+  add_index "privileges", ["user_id", "catalog_id", "role_id"], :name => "index_privileges_on_user_id_and_catalog_id_and_role_id", :unique => true
 
   create_table "representations", :force => true do |t|
     t.integer  "content_id",                                          :null => false

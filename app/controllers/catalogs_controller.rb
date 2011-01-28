@@ -13,7 +13,7 @@ class CatalogsController < ApplicationController
     
     @pages =  @contents.nil? ? 0 : Integer(@contents.count/@page_size)+1
 
-    @contents = Content.list_recent(@page)
+    @contents = Content.list_recent(@page, current_user)
 
   end
 
